@@ -13,7 +13,7 @@ export default function MyBasket({ basket }) {
       </p>
       <ul>
         {cart.map((item) => (
-          <CartItem name={item.name} amount={item.amount} />
+          <CartItem name={item.name} amount={item.amount} key={item.name} />
         ))}
       </ul>
     </section>
