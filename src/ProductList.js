@@ -3,10 +3,9 @@ export default function ProductList(props) {
   console.log(props);
   return (
     <main className="ProductList">
-      <Product {...props.product} />
-      <Product {...props.product} />
-      <Product {...props.product} />
-      <Product {...props.product} />
+      {props.products.map((item) => (
+        <Product {...item} />
+      ))}
     </main>
   );
 }

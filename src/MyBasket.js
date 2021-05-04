@@ -19,7 +19,8 @@ export default function MyBasket({ basket }) {
     </section>
   );
 }
-
+//<CartItem name={item.name} amount={item.amount} />
+//<CartItem {...item} />
 function CartItem(props) {
   console.log(props);
   return (
