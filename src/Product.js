@@ -16,7 +16,10 @@ export default function Product(props) {
     <article className={props.soldOut ? "Product soldout" : "Product"}>
       <h2>{props.productdisplayname}</h2>
       <p>{props.price}</p>
-      <button onClick={handleClickDown}> - </button>
+      <button disabled={amount === 0} onClick={handleClickDown}>
+        {" "}
+        -{" "}
+      </button>
       {amount}
       <button onClick={handleClickUp}> + </button>
     </article>
