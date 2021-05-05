@@ -1,9 +1,41 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
 .App {
   display: grid;
-  grid-template-columns: 1fr 200px;
+  grid-template-columns: 1fr 300px;
+  gap: 1rem;
 }
 .Nav {
   grid-column: 1/-1;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.Nav > * {
+  margin: 0;
+}
+.Nav,
+.ProductList {
+  padding: 1rem;
+}
+img {
+  max-width: 100%;
+  height: auto;
 }
 .ProductList {
   display: grid;
@@ -12,4 +44,28 @@
 }
 .soldout {
   background: lightblue;
+}
+.Product {
+  display: flex;
+  flex-direction: column;
+}
+.Product .buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: auto;
+}
+.Product .buttons > * {
+  margin: 0;
+}
+.Product .buttons input {
+  width: 50px;
+  text-align: center;
+}
+aside form {
+  padding: 1rem;
+}
+input {
+  max-width: 100%;
 }

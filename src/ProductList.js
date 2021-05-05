@@ -1,10 +1,14 @@
 import Product from "./Product";
 export default function ProductList(props) {
-  console.log(props);
   return (
-    <main className="ProductList">
+    <main className={`ProductList`}>
       {props.products.map((item) => (
-        <Product {...item} key={item.id} />
+        <Product
+          {...item}
+          addToBasket={props.addToBasket}
+          removeFromBasket={props.removeFromBasket}
+          key={item.id}
+        />
       ))}
     </main>
   );

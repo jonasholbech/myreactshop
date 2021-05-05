@@ -1,31 +1,22 @@
-import { useState } from "react";
 export default function MyBasket({ basket }) {
-  const [cart, setCart] = useState([
-    { name: "Shirt", amount: 1 },
-    { name: "Pants", amount: 3 },
-    { name: "Socks", amount: 2 },
-  ]);
+  const reducer = (accumulator, currentValue) =>
+    accumulator + currentValue.price;
 
-  function addToCart() {
-    setCart((nextCart) => [
-      ...nextCart,
-      {
-        name: "Shoes",
-        amount: 14,
-      },
-    ]);
-  }
-
+  const total = basket.reduce(reducer, 0);
   return (
     <section className="MyBasket">
       <p>
         You have {basket.length} item{basket.length !== 1 ? "s" : ""} in your
-        basket, totalling 0DKR
+        basket, totalling {total}DKR
       </p>
-      <button onClick={addToCart}>Buy More</button>
+
       <ul>
-        {cart.map((item) => (
-          <CartItem name={item.name} amount={item.amount} key={item.name} />
+        {basket.map((item, index) => (
+          <CartItem
+            name={item.productdisplayname}
+            amount={item.amount}
+            key={index}
+          />
         ))}
       </ul>
     </section>
@@ -34,7 +25,6 @@ export default function MyBasket({ basket }) {
 //<CartItem name={item.name} amount={item.amount} />
 //<CartItem {...item} />
 function CartItem(props) {
-  console.log(props);
   return (
     <li>
       {props.amount} {props.name}
