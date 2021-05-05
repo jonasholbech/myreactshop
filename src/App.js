@@ -22,19 +22,33 @@ function App() {
   }, [start]);
 
   function addToBasket(id, amount) {
-    const obj = products.find((item) => item.id === id);
-    setBasket((prevState) => [...prevState, obj]);
+    console.log("called");
+    const index = basket.findIndex((item) => item.id === id);
+    if (index > -1) {
+      //it is already in the basket
+      setBasket(
+        [...basket].map((item) => {
+          if (item.id === id) {
+            item.amount = item.amount + amount;
+          }
+          return item;
+        })
+      );
+    } else {
+      const obj = products.find((item) => item.id === id);
+      obj.amount = amount;
+      setBasket((prevState) => [...prevState, obj]);
+    }
   }
-  function removeFromBasket(id) {
-    let found = false;
-    const nextBasket = basket.filter((item) => {
-      if (!found && item.id === id) {
-        found = true;
-        return false;
+  function removeFromBasket(id, amount = 1) {
+    const updated = basket.map((item) => {
+      if (item.id === id) {
+        item.amount -= amount;
       }
-      return true;
+      return item;
     });
-    setBasket(nextBasket);
+    const filtered = updated.filter((item) => item.amount > 0);
+    setBasket(filtered);
   }
   const copy = [...products];
   copy.sort((a, b) => a[sortKey] > b[sortKey]);

@@ -1,12 +1,15 @@
 export default function MyBasket({ basket }) {
-  const reducer = (accumulator, currentValue) =>
-    accumulator + currentValue.price;
+  const costReducer = (accumulator, currentValue) =>
+    accumulator + currentValue.price * currentValue.amount;
+  const amountReducer = (accumulator, currentValue) =>
+    accumulator + currentValue.amount;
 
-  const total = basket.reduce(reducer, 0);
+  const numProducts = basket.reduce(amountReducer, 0);
+  const total = basket.reduce(costReducer, 0);
   return (
     <section className="MyBasket">
       <p>
-        You have {basket.length} item{basket.length !== 1 ? "s" : ""} in your
+        You have {numProducts} item{numProducts !== 1 ? "s" : ""} in your
         basket, totalling {total}DKR
       </p>
 
@@ -15,7 +18,7 @@ export default function MyBasket({ basket }) {
           <CartItem
             name={item.productdisplayname}
             amount={item.amount}
-            key={index}
+            key={item.id}
           />
         ))}
       </ul>

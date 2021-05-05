@@ -6,7 +6,7 @@ export default function Product(props) {
     setAmount((prevState) => {
       return prevState + 1;
     });
-    props.addToBasket(props.id, amount);
+    props.addToBasket(props.id, 1);
   }
 
   function handleClickDown(evt) {
