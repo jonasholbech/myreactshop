@@ -5,7 +5,7 @@ import Basket from "./Basket";
 import ProductList from "./ProductList";
 function App() {
   const [products, setProducts] = useState([]);
-  const [sortKey, setSortKey] = useState("price");
+  const [sortKey, setSortKey] = useState("productdisplayname");
   useEffect(() => {
     fetch("https://kea-alt-del.dk/t7/api/products?limit=50")
       .then((res) => res.json())

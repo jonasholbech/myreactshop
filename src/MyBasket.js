@@ -34,7 +34,6 @@ export default function MyBasket({ basket }) {
 //<CartItem name={item.name} amount={item.amount} />
 //<CartItem {...item} />
 function CartItem(props) {
-  console.log(props);
   return (
     <li>
       {props.amount} {props.name}
