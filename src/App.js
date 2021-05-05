@@ -14,7 +14,17 @@ function App() {
 
   const basket = [];
   const copy = [...products];
-  copy.sort((a, b) => a[sortKey] > b[sortKey]);
+  copy.sort((a, b) => {
+    if (a[sortKey] < b[sortKey]) {
+      return -1;
+    }
+    if (a[sortKey] > b[sortKey]) {
+      return 1;
+    }
+    // a must be equal to b
+    return 0;
+  });
+
   return (
     <div className="App">
       <button onClick={() => setSortKey("productdisplayname")}>
