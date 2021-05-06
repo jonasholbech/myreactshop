@@ -21,7 +21,7 @@ export default function Product(props) {
         -{" "}
       </button>
       {amount}
-      <button onClick={handleClickUp}> + </button>
+      <button onClick={() => props.addToBasket(props)}> + </button>
     </article>
   );
 }

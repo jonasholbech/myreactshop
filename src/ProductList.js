@@ -4,7 +4,7 @@ export default function ProductList(props) {
   return (
     <main className="ProductList">
       {props.products.map((item) => (
-        <Product {...item} key={item.id} />
+        <Product addToBasket={props.addToBasket} {...item} key={item.id} />
       ))}
     </main>
   );
