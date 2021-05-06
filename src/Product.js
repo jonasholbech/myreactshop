@@ -2,11 +2,11 @@ import { useState } from "react";
 export default function Product(props) {
   const [amount, setAmount] = useState(0);
 
-  function handleClickUp(evt) {
+  /*function handleClickUp(evt) {
     setAmount((prevState) => {
       return prevState + 1;
     });
-  }
+  }*/
   function handleClickDown(evt) {
     setAmount((prevState) => {
       return prevState - 1;
