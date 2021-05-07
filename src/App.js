@@ -1,18 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./App.css";
 import Nav from "./Nav";
 import Basket from "./Basket";
 import ProductList from "./ProductList";
+import { perPage } from "./config";
 function App() {
+  const myEl = useRef(null);
   const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState("hi");
   const [basket, setBasket] = useState([]);
   const [sortKey, setSortKey] = useState("productdisplayname");
-
+  const [start, setStart] = useState(0);
   useEffect(() => {
-    fetch("https://kea-alt-del.dk/t7/api/products?limit=50")
+    fetch(
+      `https://kea-alt-del.dk/t7/api/products?limit=${perPage}&start=${start}`
+    )
       .then((res) => res.json())
       .then(setProducts);
-  }, []);
+  }, [start]);
 
   function addToBasket(payload) {
     /*if(alreadyinbasket){
@@ -49,13 +54,29 @@ function App() {
     return 0;
   });
 
+  function updateStart() {
+    setStart((prevState) => prevState + perPage);
+    //myEl.current.disabled = true;
+  }
   return (
     <div className="App">
-      <button onClick={() => addToBasket({ data: true })}>Test</button>
-      <button onClick={() => setSortKey("productdisplayname")}>
-        Sort By Name
-      </button>
-      <button onClick={() => setSortKey("price")}>Sort By Price</button>
+      <div>
+        <h1>Searching for {search}</h1>
+        <input
+          type="search"
+          name="search"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <button ref={myEl} onClick={updateStart}>
+          Next
+        </button>
+        <button onClick={() => addToBasket({ data: true })}>Test</button>
+        <button onClick={() => setSortKey("productdisplayname")}>
+          Sort By Name
+        </button>
+        <button onClick={() => setSortKey("price")}>Sort By Price</button>
+      </div>
       <Nav />
       <ProductList products={copy} addToBasket={addToBasket} />
       <Basket basket={basket} />
