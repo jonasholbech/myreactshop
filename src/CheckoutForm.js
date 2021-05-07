@@ -10,7 +10,7 @@ export default function CheckoutForm() {
   function onSubmit(evt) {
     evt.preventDefault();
     if (!ccEl.current.checkValidity()) {
-      setCCError("I really need you to fill this inb");
+      setCCError("I really need you to fill this in");
     }
     if (formEl.current.checkValidity()) {
       console.log("valid, let post");
